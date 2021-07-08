@@ -1,0 +1,23 @@
+﻿
+@model IEnumerable<TranShop.Models.Product.Product_ProductCategory>
+@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+@{
+    ViewData["Title"] = "Trash";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts{
+    <script src="~/js/controller/productController.js"></script>
+}
+<div class="card card-header">
+    <div class=" col-md-7">
+        <h2 class="text-uppercase font-weight-bold">Quản lý Thùng Rác Sản Phẩm</h2>
+    </div>
+</div>
+
+<div class="card card-body p-2" id="view-all">
+    <partial name="_Trash" model="Model" />
+</div>
+
+

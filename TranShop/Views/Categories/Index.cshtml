@@ -1,0 +1,24 @@
+﻿
+
+@model IEnumerable<TranShop.Entities.ProductCategory>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts{
+    <script src="~/js/controller/CategoriesController.js"></script>
+}
+<div class="card card-header">
+    <div class=" col-md-7">
+        <h2 class="text-uppercase font-weight-bold">Quản lý Sản Phẩm</h2>
+    </div>
+</div>
+<div class="card card-body p-2" id="view-all">
+    <partial name="_ViewAll" model="Model" />
+</div>
+
+<div id="divThemMoi" class="d-none">
+    <partial name="AddOrEdit" model="new TranShop.Entities.ProductCategory()" />
+</div>

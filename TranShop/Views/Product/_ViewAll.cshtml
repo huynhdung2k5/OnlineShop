@@ -1,0 +1,100 @@
+﻿@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+
+@model IEnumerable<TranShop.Models.Product.Product_ProductCategory>
+
+
+
+<table class="table table-responsive-md table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Loại sản phẩm</th>
+            <th>Tên sản phẩm</th>
+            <th>Giá bán</th>
+            <th>Giá KM</th>
+            <th>Số lượng</th>
+            <th>Ngày Cập nhật</th>
+            <th>Lượt xem</th>
+            <th>
+                <a id="btnThemMoi" class="btn btn-success btn-sm">
+                    <i class="fas fa-plus"></i>Thêm Sản Phẩm
+                </a>
+            </th>
+            <th>
+                <a class="btn btn-success btn-sm" asp-action="Trash" id="trash">
+                    <i class="fas fa-trash-alt"></i>Thùng Rác
+                </a>
+            </th>
+        </tr>
+    </thead>
+    <tbody id="tbData">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @item.Price?.ToString("#,### VNĐ")
+                </td>
+                <td>
+                    @item.PromoPrice?.ToString("#,### VNĐ")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ModifiedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Views)
+                </td>
+                <td id="tdStatus">
+                    @if (item.Status == true)
+                    {
+
+                        <a asp-action="Status" class="btn btn-danger btn-sm js-btn-lock" data-id="@item.Id"
+                           asp-route-id="@item.Id">
+                            <i id="cc" class="fas fa-lock"></i>
+                        </a>
+                    }
+                    else
+                    {
+                        <a asp-action="Status" class="btn btn-success btn-sm js-btn-lock" data-id="@item.Id"
+                           asp-route-id="@item.Id">
+                            <i id="cc" class="fas fa-unlock"></i>
+                        </a>
+                    }
+                    |
+                    <a asp-action="Edit" class="btn btn-info btn-sm" asp-route-id="@item.Id">
+                        <i class="fas fa-edit"> Chi tiết</i>
+                    </a>  |
+                    <a asp-action="Del" class="btn btn-google btn-sm" asp-route-id="@item.Id">
+                        <i class="fas fa-trash"> Xóa</i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("IndexProc", new { page = page }),
+        new X.PagedList.Web.Common.PagedListRenderOptions
+        {
+            DisplayItemSliceAndTotal = false,
+            ContainerDivClasses = new[] { "Navigation js-pagination" },
+            LiElementClasses = new[] { "page-item" },
+            PageClasses = new[] { "page-link" },
+        })
+
+@section scripts{
+
+
+}

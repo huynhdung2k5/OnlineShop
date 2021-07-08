@@ -1,0 +1,4 @@
+﻿@model List<TranShop.Entities.ProductCategory>
+<select name="Category"
+        class="form-control" id="InputCategory"
+        asp-items="@(new SelectList(Model,"Id","Name"))"></select>

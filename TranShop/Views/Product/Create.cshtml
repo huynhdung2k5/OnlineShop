@@ -1,0 +1,42 @@
+﻿@model TranShop.Models.Product.Product_ProductCategory
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Create" id="fThemMoi" autocomplete="off">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Danh Mục Sản Phẩm</label>
+                <vc:select-category></vc:select-category>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Tên Sản Phẩm</label>
+                <input asp-for="ProductName" class="form-control" />
+                <span asp-validation-for="ProductName" class="text-danger" id="InputName"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Mô Tả Sản Phẩm</label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger" id="InputDes"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Giá Sản Phẩm</label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger" id="InputPrice"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Giá KM Sản Phẩm</label>
+                <input asp-for="PromoPrice" class="form-control" />
+                <span asp-validation-for="PromoPrice" class="text-danger" id="InputPromo"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Số lượng Sản Phẩm</label>
+                <input asp-for="Quantity" class="form-control" />
+                <span asp-validation-for="Quantity" class="text-danger" id="InputQuan"></span>
+            </div>
+        </form>
+
+    </div>
+
+</div>
+
+
