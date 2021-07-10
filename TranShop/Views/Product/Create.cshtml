@@ -14,6 +14,13 @@
                 <span asp-validation-for="ProductName" class="text-danger" id="InputName"></span>
             </div>
             <div class="form-group">
+                <label class="control-label">Chọn ảnh</label>
+                <div class="custom-file">
+                    <input asp-for="Image" class="custom-file-input" id="customFile" accept="image/*">
+                    <label class="custom-file-label" for="customFile">Nhấn để chọn ảnh</label>
+                </div>
+            </div>
+            <div class="form-group">
                 <label class="control-label">Mô Tả Sản Phẩm</label>
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger" id="InputDes"></span>

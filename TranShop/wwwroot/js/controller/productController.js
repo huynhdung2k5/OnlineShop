@@ -3,11 +3,12 @@
 $(window).ready(function () {
 
     mThemMoi.setTitle("Thêm mới Sản Phẩm");
+    mThemMoi.useLargeSize();
     mThemMoi.setDefaultFooterButton("Lưu", "Hủy");
     mThemMoi.hideModalAfterEndPrimaryEvent = false;
     $("#divThemMoi>div").appendTo(mThemMoi.modalBody);
 
-    $("#btnThemMoi").click(function (ev) {
+    $(document).on("click","#btnThemMoi", function (ev) {
         mThemMoi.show();
     });
     mThemMoi.setPrimaryButtonEvent(function () {
@@ -17,10 +18,13 @@ $(window).ready(function () {
 
         if (valid == true) {
             try {
+                var data = new FormData(form[0]);
                 $.ajax({
                     type: 'POST',
                     url: form.attr('action'),
-                    data: form.serialize(),
+                    data: data,
+                    processData: false,
+                    contentType: false,
                     success: function (response) {
                         if (response.isValid) {
                             form.trigger('reset');
@@ -46,43 +50,6 @@ var Updatedata = (_page = 1)=> {
         $("#view-all").html(res);
     }), "html"
 };
-
-jQueryAjaxPost = (ev) => {
-    ev.preventDefault();
-    $.validator.unobtrusive.parse('form');
-    var valid = $(ev.currentTarget).valid();
-
-    if (valid == true) {
-        try {
-            $.ajax({
-                type: 'POST',
-                url: ev.currentTarget.action,
-                data: new FormData(ev.currentTarget),
-                contentType: false,
-                processData: false,
-                success: function (respone) {
-                    if (respone.isValid) {
-                        $("#view-all").html(respone.html);
-                        $("#form-modal .modal-body").html('');
-                        $("#form-modal .modal-title").html('');
-                        $("#form-modal").modal('hide');
-                    }
-                    else {
-                        $("#form-modal .modal-body").html(respone.html);
-                    }
-                },
-                error: function (err) {
-                    console.log(err);
-                }
-            });
-        }
-        catch (e) {
-            console.log(e);
-        }
-    }
-
-    return false;
-}
 
 // cái ổ khóa 
 $(document).on("click", ".js-btn-lock", (ev) => {

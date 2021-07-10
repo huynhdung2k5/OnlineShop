@@ -10,6 +10,7 @@ using TranShop.Entities;
 using Microsoft.EntityFrameworkCore;
 using TranShop.Models.Product;
 using X.PagedList;
+using System.IO;
 
 namespace TranShop.Controllers
 {
@@ -78,6 +79,20 @@ namespace TranShop.Controllers
 
             if (ModelState.IsValid)
             {
+                // Xử lý nhận & lưu file
+                var files = Request.Form.Files;
+                if (files.Count > 0)
+                {
+                    var projectPath = Directory.GetCurrentDirectory();
+                    var fileName = DateTime.Now.Ticks.ToString() + files[0].FileName;
+                    var location = projectPath + "/wwwroot/pics/"+ fileName;
+
+                    var stream = System.IO.File.Create(location);
+                    files[0].CopyTo(stream);
+                    stream.Dispose();
+                    model.ImageProduct = $"/pics/{fileName}";
+                }
+
                 db.Products.Add(model);
                 await db.SaveChangesAsync();
                 return Json(new

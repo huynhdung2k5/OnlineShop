@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -33,5 +34,7 @@ namespace TranShop.Models.Product
         public DateTime? ModifiedDate { get; set; }
         public bool? Status { get; set; }
         public bool? IsDeleted { get; set; }
+
+        public IFormFile Image { get; set; }
     }
 }
