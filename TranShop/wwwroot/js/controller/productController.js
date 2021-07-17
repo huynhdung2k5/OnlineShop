@@ -84,7 +84,7 @@ $(document).on("click", ".js-pagination li>a", function (ev) {
 $(document).on("click", "#trash", function (ev) {
     ev.preventDefault();
     var url = ev.currentTarget.href;
-    $.get(url, {},
+    $.get(url, {mode: 1},
         function (data, textStatus, jqXHR) {
             $("#view-all").html(data);
         },

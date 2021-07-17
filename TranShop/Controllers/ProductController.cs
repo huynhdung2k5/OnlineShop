@@ -160,7 +160,14 @@ namespace TranShop.Controllers
                         Views = p.Views,
                         IsDeleted = p.IsDeleted
                     }).Where(p => p.IsDeleted != false).ToPagedList(pageNumber,pageSize);
-            return View(list);
+            if (mode == 0)
+            {
+                return View(list);
+            }
+            else
+            {
+                return PartialView("_Trash", list);
+            }
         }
 
         //xử lý cái ổ khóa
@@ -200,7 +207,7 @@ namespace TranShop.Controllers
             x.ModifiedDate = DateTime.Now;
             db.Entry(x).State = EntityState.Modified;
             db.SaveChanges();
-            return RedirectToAction("_Trash");
+            return RedirectToAction("Trash");
         }
     }
 }
