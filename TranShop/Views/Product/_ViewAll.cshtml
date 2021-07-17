@@ -16,7 +16,15 @@
             <th>Số lượng</th>
             <th>Ngày Cập nhật</th>
             <th>Lượt xem</th>
-
+            <th>
+                <a id="btnThemMoi" class="btn btn-success btn-sm">
+                    <i class="fas fa-plus"></i>Thêm Sản Phẩm
+                </a>
+                |
+                <a class="btn btn-danger btn-sm" asp-action="_Trash" id="trash">
+                    <i class="fas fa-trash-alt"></i>Thùng Rác
+                </a>
+            </th>
         </tr>
     </thead>
     <tbody id="tbData">
@@ -85,7 +93,3 @@
             PageClasses = new[] { "page-link" },
         })
 
-@section scripts{
-
-
-}

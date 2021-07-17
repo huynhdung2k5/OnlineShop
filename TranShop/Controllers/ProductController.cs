@@ -138,7 +138,7 @@ namespace TranShop.Controllers
             db.SaveChanges();
             return RedirectToAction("IndexProc");
         }
-        public IActionResult Trash(int? page, int mode = 0)
+        public IActionResult _Trash(int? page, int mode = 0)
         {
             var pageNumber = page ?? 1;
             int pageSize = 6;
@@ -200,7 +200,7 @@ namespace TranShop.Controllers
             x.ModifiedDate = DateTime.Now;
             db.Entry(x).State = EntityState.Modified;
             db.SaveChanges();
-            return RedirectToAction("Trash");
+            return RedirectToAction("_Trash");
         }
     }
 }
