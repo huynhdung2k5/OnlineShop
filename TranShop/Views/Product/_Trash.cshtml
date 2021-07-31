@@ -63,7 +63,7 @@
     </tbody>
 </table>
 
-@Html.PagedListPager((IPagedList)Model, page => Url.Action("Trash", new { page = page }),
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("_Trash", new { page = page }),
         new X.PagedList.Web.Common.PagedListRenderOptions
         {
             DisplayItemSliceAndTotal = false,
